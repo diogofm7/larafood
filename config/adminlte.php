@@ -232,9 +232,16 @@ return [
 
     'menu' => [
         [
-            'text' => 'PLanos',
+            'text' => 'Planos',
             'url'  => 'admin/plans',
-            'icon' => 'fas fa-list-alt'
+            'icon' => 'fas fa-list-alt',
+            'active'  => ['admin/plans', 'admin/plans/*', 'admin/plan', 'admin/plan/*']
+        ],
+        [
+            'text' => 'Prefis',
+            'url'  => 'admin/profiles',
+            'icon' => 'far fa-address-book',
+            'active'  => ['admin/profiles', 'admin/profiles/*']
         ],
     ],
 

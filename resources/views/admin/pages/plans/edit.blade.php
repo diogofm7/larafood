@@ -9,7 +9,7 @@
         <li class="breadcrumb-item active"><a href="{{ route('admin.plans.edit', $plan->url) }}" class="active">Editar o Plano {{ $plan->name }}</a></li>
     </ol>
 
-    <h1>Editar o Plano</h1>
+    <h1>Editar o Plano {{ $plan->name }}</h1>
 @stop
 
 @section('content')

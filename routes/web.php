@@ -25,6 +25,12 @@ Route::group([
     Route::get('/', 'PlanController@index')->name('index');
 
     /**
+     * Routes Profiles
+     */
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ACL\ProfileController');
+
+    /**
      * Routes Details Plans
      */
     Route::group([

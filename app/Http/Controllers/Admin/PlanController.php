@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
+use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
@@ -65,7 +66,7 @@ class PlanController extends Controller
         return redirect()->route('admin.plans.index');
     }
 
-    public function search(StoreUpdatePlan $request)
+    public function search(Request $request)
     {
         $filters = $request->all();
 
