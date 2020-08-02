@@ -25,6 +25,12 @@ Route::group([
     Route::get('/', 'PlanController@index')->name('index');
 
     /**
+     * Routes Permissiona
+     */
+    Route::any('permissions/search', 'ACL\PermissionController@search')->name('Permissions.search');
+    Route::resource('permissions', 'ACL\PermissionController');
+
+    /**
      * Routes Profiles
      */
     Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');

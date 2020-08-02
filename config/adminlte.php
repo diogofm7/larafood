@@ -243,6 +243,12 @@ return [
             'icon' => 'far fa-address-book',
             'active'  => ['admin/profiles', 'admin/profiles/*']
         ],
+        [
+            'text' => 'Permissões',
+            'url'  => 'admin/permissions',
+            'icon' => 'fas fa-unlock',
+            'active'  => ['admin/permissions', 'admin/permissions/*']
+        ],
     ],
 
     /*
