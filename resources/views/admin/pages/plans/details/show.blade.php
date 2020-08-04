@@ -3,13 +3,15 @@
 @section('title', 'Detalhe - ' . $detail->name)
 
 @section('content_header')
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.details.plan.index', $plan->url) }}">Detalhes {{ $plan->name }}</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.details.plan.show', [$plan->url, $detail->id]) }}" class="active">Detalhes</a></li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.details.plan.index', $plan->url) }}">Detalhes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $detail->name }}</li>
+        </ol>
+    </nav>
 
     <h1>Detalhe - {{ $detail->name }}</h1>
 @stop

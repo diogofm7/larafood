@@ -3,11 +3,13 @@
 @section('title', 'Cadastrar Novo Plano')
 
 @section('content_header')
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.plans.index') }}" class="active">Planos</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.plans.create') }}" class="active">Cadastrar Novo Plano</a></li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cadastrar Novo Plano</li>
+        </ol>
+    </nav>
 
     <h1>Cadastrar Novo Plano</h1>
 @stop

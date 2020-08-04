@@ -3,11 +3,13 @@
 @section('title', 'Detalhes da Permissão ' . $permission->name)
 
 @section('content_header')
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.permissions.index') }}" class="active">Permissões</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.permissions.show', $permission->id) }}" class="active">{{ $permission->name }}</a></li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.permissions.index') }}">Permissões</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $permission->name }}</li>
+        </ol>
+    </nav>
 
     <h1>Detalhes da Permissão {{ $permission->name }}</h1>
 @stop

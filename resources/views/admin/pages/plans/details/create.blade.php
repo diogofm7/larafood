@@ -3,13 +3,15 @@
 @section('title', 'Adicionar novo Detalhe ao Plano - ' . $plan->name)
 
 @section('content_header')
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.details.plan.index', $plan->url) }}">Detalhes {{ $plan->name }}</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.details.plan.create', $plan->url) }}" class="active">Novo Detalhe</a></li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.details.plan.index', $plan->url) }}">Detalhes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Detalhe</li>
+        </ol>
+    </nav>
 
     <h1>Adicionar novo Detalhe ao Plano - {{ $plan->name }}</h1>
 @stop

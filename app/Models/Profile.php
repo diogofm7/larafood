@@ -8,6 +8,52 @@ class Profile extends Model
 {
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Get Permissions
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    /**
+     * Permissions not linked with this profile
+     */
+    public function permissionsAvailable($filters = null)
+    {
+        $permissions = Permission::whereNotIn('id', function ($query) {
+                                    $query->select('permission_profile.permission_id');
+                                    $query->from('permission_profile');
+                                    $query->where('permission_profile.profile_id', $this->id);
+                                })
+                                ->where(function ($queryFilter) use ($filters) {
+                                    if ($filters)
+                                        $queryFilter->where('permissions.name', 'like', '%' . $filters . '%');
+                                })
+                                ->paginate();
+
+        return $permissions;
+    }
+
+    /**
+     * Permissions linked with this profile
+     */
+    public function permissionsAtaccheds($filters = null)
+    {
+        $permissions = $this->permissions()
+                            ->where(function ($queryFilter) use ($filters) {
+                                if ($filters)
+                                    $queryFilter->where('permissions.name', 'like', '%' . $filters . '%');
+                            })
+                            ->paginate();
+
+        return $permissions;
+    }
+
+    /**
+     * @param null $filter
+     * @return mixed
+     */
     public function search($filter = null)
     {
         $results = $this->where('name', 'like', '%' . $filter . '%')

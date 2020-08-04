@@ -3,13 +3,15 @@
 @section('title', 'Editar o Detalhe - ' . $detail->name)
 
 @section('content_header')
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.details.plan.index', $plan->url) }}">Detalhes {{ $plan->name }}</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('admin.details.plan.edit', [$plan->url, $detail->id]) }}" class="active">Editar Detalhe</a></li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.index') }}">Planos</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.details.plan.index', $plan->url) }}">Detalhes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Detalhe - {{ $detail->name }}</li>
+        </ol>
+    </nav>
 
     <h1>Editar o Detalhe - {{ $detail->name }}</h1>
 @stop
