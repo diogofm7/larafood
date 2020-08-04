@@ -68,11 +68,11 @@ Route::group([
         'as' => 'details.plan.'
     ], function () {
         Route::delete('/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('destroy');
+        Route::get('/{url}/details/create', 'DetailPlanController@create')->name('create');
         Route::get('/{url}/details/{idDetail}', 'DetailPlanController@show')->name('show');
         Route::put('/{url}/details/{idDetail}', 'DetailPlanController@update')->name('update');
         Route::get('/{url}/details/{idDetail}/edit', 'DetailPlanController@edit')->name('edit');
         Route::post('/{url}/details', 'DetailPlanController@store')->name('store');
-        Route::get('/{url}/details/create', 'DetailPlanController@create')->name('create');
         Route::get('/{url}/details', 'DetailPlanController@index')->name('index');
     });
 
