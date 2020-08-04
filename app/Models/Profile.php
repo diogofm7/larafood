@@ -17,6 +17,14 @@ class Profile extends Model
     }
 
     /**
+     * Get Plans
+     */
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class);
+    }
+
+    /**
      * Permissions not linked with this profile
      */
     public function permissionsAvailable($filters = null)
@@ -48,6 +56,40 @@ class Profile extends Model
                             ->paginate();
 
         return $permissions;
+    }
+
+    /**
+     * Plans not linked with this profile
+     */
+    public function plansAvailable($filters = null)
+    {
+        $plans = Plan::whereNotIn('id', function ($query) {
+            $query->select('plan_profile.plan_id');
+            $query->from('plan_profile');
+            $query->where('plan_profile.profile_id', $this->id);
+        })
+            ->where(function ($queryFilter) use ($filters) {
+                if ($filters)
+                    $queryFilter->where('plans.name', 'like', '%' . $filters . '%');
+            })
+            ->paginate();
+
+        return $plans;
+    }
+
+    /**
+     * PLans linked with this profile
+     */
+    public function plansAtaccheds($filters = null)
+    {
+        $plans = $this->plans()
+            ->where(function ($queryFilter) use ($filters) {
+                if ($filters)
+                    $queryFilter->where('plans.name', 'like', '%' . $filters . '%');
+            })
+            ->paginate();
+
+        return $plans;
     }
 
     /**

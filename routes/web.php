@@ -16,34 +16,48 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'admin',
+    'middleware' => [
+        'auth'
+    ],
     'as' => 'admin.'
 ], function () {
 
     /**
      * Home Dashboard
      */
-    Route::get('/', 'PlanController@index')->name('index');
+    //Route::get('/', 'PlanController@index')->name('index');
+    Route::get('/', function () {
+        return redirect()->route('admin.plans.index');
+    })->name('index');
 
+    /**
+     * Routes Plans x Profile
+     */
+    Route::get('profiles/{id}/plans/{idPlan}/detach', 'ACL\PlanProfileController@plansDetach')->name('profiles.plans.detach');
+    Route::post('profiles/{id}/plans/attach', 'ACL\PlanProfileController@plansAttach')->name('profiles.plans.attach');
+    Route::match(['get', 'post'],'profiles/{id}/plans/create', 'ACL\PlanProfileController@plansAvailable')->name('profiles.plans.available');
+    Route::match(['get', 'post'],'profiles/{id}/plans', 'ACL\PlanProfileController@plans')->name('profiles.plans');
+    Route::match(['get', 'post'],'plans/{idPlan}/profile', 'ACL\PlanProfileController@profiles')->name('plans.profiles');
 
     /**
      * Routes Permission x Profile
      */
     Route::get('profiles/{id}/permissions/{idPermission}/detach', 'ACL\PermissionProfileController@permissionsDetach')->name('profiles.permissions.detach');
     Route::post('profiles/{id}/permissions/attach', 'ACL\PermissionProfileController@permissionsAttach')->name('profiles.permissions.attach');
-    Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
-    Route::any('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
-    Route::any('permissions/{idPermission}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
+    Route::match(['get', 'post'],'profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+    Route::match(['get', 'post'],'profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+    Route::match(['get', 'post'],'permissions/{idPermission}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
 
     /**
      * Routes Permissions
      */
-    Route::any('permissions/search', 'ACL\PermissionController@search')->name('Permissions.search');
+    Route::match(['get', 'post'],'permissions/search', 'ACL\PermissionController@search')->name('Permissions.search');
     Route::resource('permissions', 'ACL\PermissionController');
 
     /**
      * Routes Profiles
      */
-    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::match(['get', 'post'],'profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
     Route::resource('profiles', 'ACL\ProfileController');
 
     /**
@@ -69,7 +83,7 @@ Route::group([
         'prefix' => 'plans',
         'as' => 'plans.'
     ], function () {
-        Route::any('search', 'PlanController@search')->name('search');
+        Route::match(['get', 'post'],'search', 'PlanController@search')->name('search');
         Route::post('/', 'PlanController@store')->name('store');
         Route::get('create', 'PlanController@create')->name('create');
         Route::get('/', 'PlanController@index')->name('index');
@@ -82,10 +96,9 @@ Route::group([
 });
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Site\SiteController@index')->name('site.home');
 
-/*Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');*/
+/**
+ * Auth Routes
+ */
+Auth::routes();

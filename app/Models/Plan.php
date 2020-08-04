@@ -18,6 +18,26 @@ class Plan extends Model
         return $this->hasMany(DetailPlan::class);
     }
 
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
+    /**
+     * Profiles linked with this plan
+     */
+    public function profilesAtaccheds($filters = null)
+    {
+        $profiles = $this->profiles()
+            ->where(function ($queryFilter) use ($filters) {
+                if ($filters)
+                    $queryFilter->where('profiles.name', 'like', '%' . $filters . '%');
+            })
+            ->paginate();
+
+        return $profiles;
+    }
+
     public function search($filter = null)
     {
         $results = $this->where('name', 'like', '%' . $filter . '%')
