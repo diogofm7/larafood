@@ -69,7 +69,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -235,19 +235,25 @@ return [
             'text' => 'Planos',
             'url'  => 'admin/plans',
             'icon' => 'fas fa-list-alt',
-            'active'  => ['admin/plans', 'admin/plans/*', 'admin/plan', 'admin/plan/*']
+            'active'  => ['admin/plans/*', 'admin/plan/*']
         ],
         [
             'text' => 'Prefis',
             'url'  => 'admin/profiles',
             'icon' => 'far fa-address-book',
-            'active'  => ['admin/profiles', 'admin/profiles/*']
+            'active'  => ['admin/profiles/*']
         ],
         [
             'text' => 'Permissões',
             'url'  => 'admin/permissions',
             'icon' => 'fas fa-unlock',
-            'active'  => ['admin/permissions', 'admin/permissions/*']
+            'active'  => ['admin/permissions/*']
+        ],
+        [
+            'text' => 'Usuários',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-users',
+            'active'  => ['admin/users/*']
         ],
     ],
 

@@ -31,6 +31,12 @@ Route::group([
     })->name('index');
 
     /**
+     * Routes Users
+     */
+    Route::match(['get', 'post'],'users/search', 'UserController@search')->name('users.search');
+    Route::resource('users', 'UserController');
+
+    /**
      * Routes Plans x Profile
      */
     Route::get('profiles/{id}/plans/{idPlan}/detach', 'ACL\PlanProfileController@plansDetach')->name('profiles.plans.detach');

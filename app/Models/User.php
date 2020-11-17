@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'tenant_id'
     ];
 
     /**
@@ -37,8 +38,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function adminlte_profile_url()
+    public function scopeTenantFilter(Builder $query)
     {
-        return '/';
+        return $query->where('tenant_id', auth()->user()->tenant_id);
+    }
+
+    /**
+     *  Tenant
+     */
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
+    /**
+     * @param null $filter
+     * @return mixed
+     */
+    public function search($filter = null)
+    {
+        $results = $this->where('name', 'like', '%' . $filter . '%')
+            ->orWhere('email', $filter)
+            ->latest()
+            ->tenantFilter()
+            ->paginate();
+
+        return $results;
     }
 }
