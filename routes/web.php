@@ -31,6 +31,12 @@ Route::group([
     })->name('index');
 
     /**
+     * Routes Categories
+     */
+    Route::match(['get', 'post'],'categories/search', 'CategoryController@search')->name('categories.search');
+    Route::resource('categories', 'CategoryController');
+
+    /**
      * Routes Users
      */
     Route::match(['get', 'post'],'users/search', 'UserController@search')->name('users.search');
