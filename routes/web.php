@@ -31,13 +31,19 @@ Route::group([
     })->name('index');
 
     /**
+     * Routes tables
+     */
+    Route::match(['get', 'post'],'tables/search', 'TableController@search')->name('tables.search');
+    Route::resource('tables', 'TableController');
+
+    /**
      * Routes Product x Category
      */
     Route::get('products/{idProduct}/categories/{idCategory}/detach', 'CategoryProductController@categoriesDetach')->name('products.categories.detach');
     Route::post('products/{idProduct}/categories/attach', 'CategoryProductController@categoriesAttach')->name('products.categories.attach');
     Route::match(['get', 'post'],'products/{idProduct}/categories/create', 'CategoryProductController@categoriesAvailable')->name('products.categories.available');
     Route::match(['get', 'post'],'products/{idProduct}/categories', 'CategoryProductController@categories')->name('products.categories');
-    Route::match(['get', 'post'],'categories/{idCategory}/products', 'CategoryProductController@products')->name('categories.products');
+    Route::match(['get', 'post'],'categories/{idCategory}/products', 'CattabegoryProductController@products')->name('categories.products');
 
     /**
      * Routes Products

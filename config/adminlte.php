@@ -267,6 +267,12 @@ return [
             'icon' => 'fas fa-hamburger',
             'active'  => ['admin/products/*']
         ],
+        [
+            'text' => 'Mesas',
+            'url'  => 'admin/tables',
+            'icon' => 'fas fa-tablet',
+            'active'  => ['admin/tables/*']
+        ],
     ],
 
     /*
