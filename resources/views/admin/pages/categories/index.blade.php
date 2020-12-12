@@ -40,6 +40,7 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
                             <td>
+                                <a href="{{ route('admin.categories.products', $category->id) }}" class="btn btn-primary"><i class="fas fa-hamburger"></i> Produtos</a>
                                 <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Editar</a>
                                 <a href="{{ route('admin.categories.show', $category->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i> Ver</a>
                             </td>

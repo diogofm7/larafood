@@ -34,16 +34,19 @@ class CategoryProductController extends Controller
         ]);
     }
 
-    public function products($idCategory)
+    public function products(Request $request, $idCategory)
     {
         if (!$category = $this->category->find($idCategory))
             return redirect()->back();
 
-        $products = $category->products()->paginate();
+        $filters = $request->except('_token');
+
+        $products = $category->productsAtaccheds($request->filter);
 
         return view('admin.pages.categories.products.products', [
             'category' => $category,
-            'products' => $products
+            'products' => $products,
+            'filters' => $filters
         ]);
     }
 
