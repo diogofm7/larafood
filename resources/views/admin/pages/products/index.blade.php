@@ -1,22 +1,22 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Produtos')
 
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Categorias</li>
+            <li class="breadcrumb-item active" aria-current="page">Produtos</li>
         </ol>
     </nav>
 
-    <h1>Categorias <a href="{{ route('admin.categories.create') }}" class="btn btn-dark"><i class="fas fa-plus-square"></i> ADD</a></h1>
+    <h1>Produtos <a href="{{ route('admin.products.create') }}" class="btn btn-dark"><i class="fas fa-plus-square"></i> ADD</a></h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('admin.categories.search') }}" class="form form-inline" method="post">
+            <form action="{{ route('admin.products.search') }}" class="form form-inline" method="post">
                 @csrf
                 <div class="form-group mx-2">
                     <input type="text" name="filter" placeholder="Filtro" class="form-control" value="{{ $filters??'' }}">
@@ -29,19 +29,19 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
+                        <th>Imagem</th>
+                        <th>Titulo</th>
                         <th width="360">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($categories as $category)
+                    @foreach($products as $product)
                         <tr>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->description }}</td>
+                            <td><img src="{{ asset('storage/'.$product->image) }}" alt="Imagem do Produto {{ $product->title }}" style="max-width: 90px"></td>
+                            <td>{{ $product->description }}</td>
                             <td>
-                                <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Editar</a>
-                                <a href="{{ route('admin.categories.show', $category->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i> Ver</a>
+                                <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Editar</a>
+                                <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i> Ver</a>
                             </td>
                         </tr>
                     @endforeach
@@ -51,9 +51,9 @@
 
         <div class="card-footer">
             @if (isset($filters))
-                {{ $categories->appends($filters)->links() }}
+                {{ $products->appends($filters)->links() }}
             @else
-                {{ $categories->links() }}
+                {{ $products->links() }}
             @endif
         </div>
     </div>

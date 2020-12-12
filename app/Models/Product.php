@@ -2,31 +2,29 @@
 
 namespace App\Models;
 
-use App\Tenant\Observers\TenantObserver;
-use Illuminate\Database\Eloquent\Model;
 use App\Tenant\Traits\TenantTrait;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Product extends Model
 {
     use TenantTrait;
 
     protected $fillable = [
-        'name', 'url', 'description'
+        'title', 'flag', 'price', 'description', 'image'
     ];
 
-    public function products()
+    public function categories()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function search($filter = null)
     {
-        $results = $this->where('name', 'like', '%' . $filter . '%')
+        $results = $this->where('title', 'like', '%' . $filter . '%')
             ->orWhere('description', 'like', '%' . $filter . '%')
             ->latest()
             ->paginate();
 
         return $results;
     }
-
 }

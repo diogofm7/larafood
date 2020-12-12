@@ -31,6 +31,12 @@ Route::group([
     })->name('index');
 
     /**
+     * Routes Products
+     */
+    Route::match(['get', 'post'],'products/search', 'ProductController@search')->name('products.search');
+    Route::resource('products', 'ProductController');
+
+    /**
      * Routes Categories
      */
     Route::match(['get', 'post'],'categories/search', 'CategoryController@search')->name('categories.search');
