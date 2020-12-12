@@ -29,7 +29,7 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Imagem</th>
+                        <th width="100">Imagem</th>
                         <th>Titulo</th>
                         <th width="360">Ações</th>
                     </tr>
@@ -40,6 +40,7 @@
                             <td><img src="{{ asset('storage/'.$product->image) }}" alt="Imagem do Produto {{ $product->title }}" style="max-width: 90px"></td>
                             <td>{{ $product->description }}</td>
                             <td>
+                                <a href="{{ route('admin.products.categories', $product->id) }}" class="btn btn-info"><i class="fas fa-layer-group"></i> Categorias</a>
                                 <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Editar</a>
                                 <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i> Ver</a>
                             </td>
