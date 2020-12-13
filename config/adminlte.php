@@ -235,43 +235,50 @@ return [
             'text' => 'Planos',
             'url'  => 'admin/plans',
             'icon' => 'fas fa-list-alt',
-            'active'  => ['admin/plans/*', 'admin/plan/*']
+            'active'  => ['admin/plans/*', 'admin/plan/*'],
+            'can' => 'Plans'
         ],
         [
             'text' => 'Prefis',
             'url'  => 'admin/profiles',
             'icon' => 'far fa-address-book',
-            'active'  => ['admin/profiles/*']
+            'active'  => ['admin/profiles/*'],
+            'can' => 'Profiles'
         ],
         [
             'text' => 'Permissões',
             'url'  => 'admin/permissions',
             'icon' => 'fas fa-unlock',
-            'active'  => ['admin/permissions/*']
+            'active'  => ['admin/permissions/*'],
+            'can' => 'Permissions'
         ],
         [
             'text' => 'Usuários',
             'url'  => 'admin/users',
             'icon' => 'fas fa-users',
-            'active'  => ['admin/users/*']
+            'active'  => ['admin/users/*'],
+            'can' => 'Users'
         ],
         [
             'text' => 'Categorias',
             'url'  => 'admin/categories',
             'icon' => 'fas fa-layer-group',
-            'active'  => ['admin/categories/*']
+            'active'  => ['admin/categories/*'],
+            'can' => 'Categories'
         ],
         [
             'text' => 'Produtos',
             'url'  => 'admin/products',
             'icon' => 'fas fa-hamburger',
-            'active'  => ['admin/products/*']
+            'active'  => ['admin/products/*'],
+            'can' => 'Products'
         ],
         [
             'text' => 'Mesas',
             'url'  => 'admin/tables',
             'icon' => 'fas fa-tablet',
-            'active'  => ['admin/tables/*']
+            'active'  => ['admin/tables/*'],
+            'can' => 'Tables'
         ],
     ],
 

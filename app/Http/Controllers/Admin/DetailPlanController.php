@@ -15,6 +15,8 @@ class DetailPlanController extends Controller
     {
         $this->repository = $detailPlan;
         $this->plan = $plan;
+
+        $this->middleware(['can:Plans']);
     }
 
     public function index($urlPlan)

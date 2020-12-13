@@ -18,6 +18,8 @@ class ProductController extends Controller
     public function __construct(Product $category)
     {
         $this->repository = $category;
+
+        $this->middleware(['can:Products']);
     }
 
     /**

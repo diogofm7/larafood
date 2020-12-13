@@ -30,7 +30,7 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th width="400">Ações</th>
+                    <th width="450">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
