@@ -31,6 +31,12 @@ Route::group([
     })->name('index');
 
     /**
+     * Routes Tenants
+     */
+    Route::match(['get', 'post'],'tenants/search', 'TenantController@search')->name('tenants.search');
+    Route::resource('tenants', 'TenantController')->except(['create', 'store']);
+
+    /**
      * Routes tables
      */
     Route::match(['get', 'post'],'tables/search', 'TableController@search')->name('tables.search');
