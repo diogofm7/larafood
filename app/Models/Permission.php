@@ -17,6 +17,14 @@ class Permission extends Model
     }
 
     /**
+     * Get Roles
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
      * Profiles linked with this permission
      */
     public function profilesAtaccheds($filters = null)

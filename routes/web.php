@@ -31,6 +31,31 @@ Route::group([
     })->name('index');
 
     /**
+     * Routes Role x User
+     */
+    Route::get('users/{id}/roles/{idRole}/detach', 'ACL\RoleUserController@rolesDetach')->name('users.roles.detach');
+    Route::post('users/{id}/roles/attach', 'ACL\RoleUserController@rolesAttach')->name('users.roles.attach');
+    Route::match(['get', 'post'],'users/{id}/roles/create', 'ACL\RoleUserController@rolesAvailable')->name('users.roles.available');
+    Route::match(['get', 'post'],'users/{id}/roles', 'ACL\RoleUserController@roles')->name('users.roles');
+    Route::match(['get', 'post'],'roles/{idRole}/profile', 'ACL\RoleUserController@users')->name('roles.users');
+
+    /**
+     * Routes Permission x Role
+     */
+    Route::get('roles/{id}/permissions/{idPermission}/detach', 'ACL\PermissionRoleController@permissionsDetach')->name('roles.permissions.detach');
+    Route::post('roles/{id}/permissions/attach', 'ACL\PermissionRoleController@permissionsAttach')->name('roles.permissions.attach');
+    Route::match(['get', 'post'],'roles/{id}/permissions/create', 'ACL\PermissionRoleController@permissionsAvailable')->name('roles.permissions.available');
+    Route::match(['get', 'post'],'roles/{id}/permissions', 'ACL\PermissionRoleController@permissions')->name('roles.permissions');
+    Route::match(['get', 'post'],'permissions/{idPermission}/role', 'ACL\PermissionRoleController@roles')->name('permissions.roles');
+
+
+    /**
+     * Routes Roles
+     */
+    Route::match(['get', 'post'],'roles/search', 'ACL\RoleController@search')->name('roles.search');
+    Route::resource('roles', 'ACL\RoleController');
+
+    /**
      * Routes Tenants
      */
     Route::match(['get', 'post'],'tenants/search', 'TenantController@search')->name('tenants.search');

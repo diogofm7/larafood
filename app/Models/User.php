@@ -53,6 +53,48 @@ class User extends Authenticatable
     }
 
     /**
+     * Get Roles
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * Roles not linked with this role
+     */
+    public function rolesAvailable($filters = null)
+    {
+        $roles = Role::whereNotIn('id', function ($query) {
+            $query->select('role_user.role_id');
+            $query->from('role_user');
+            $query->where('role_user.user_id', $this->id);
+        })
+            ->where(function ($queryFilter) use ($filters) {
+                if ($filters)
+                    $queryFilter->where('role.name', 'like', '%' . $filters . '%');
+            })
+            ->paginate();
+
+        return $roles;
+    }
+
+    /**
+     * Roles linked with this role
+     */
+    public function rolesAtaccheds($filters = null)
+    {
+        $roles = $this->roles()
+            ->where(function ($queryFilter) use ($filters) {
+                if ($filters)
+                    $queryFilter->where('roles.name', 'like', '%' . $filters . '%');
+            })
+            ->paginate();
+
+        return $roles;
+    }
+
+    /**
      * @param null $filter
      * @return mixed
      */
