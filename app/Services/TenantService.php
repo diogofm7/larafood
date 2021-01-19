@@ -3,12 +3,32 @@
 namespace App\Services;
 
 use App\Models\Plan;
+use App\Repositories\Contracts\TenantRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class TenantService
 {
     private $plan, $data = [];
+    /**
+     * @var TenantRepositoryInterface
+     */
+    private $repository;
+
+    public function __construct(TenantRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function getAllTenant()
+    {
+        return $this->repository->getAllTenant();
+    }
+
+    public function getTenantByUuid(string $uuid)
+    {
+        return $this->repository->getTenantByUuid($uuid);
+    }
 
     public function make(Plan $plan, array $data)
     {
