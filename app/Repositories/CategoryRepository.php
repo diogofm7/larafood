@@ -23,7 +23,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return DB::table($this->table)
                 ->join('tenants', 'tenants.id', '=', 'categories.tenant_id')
-                ->where('tenents.uuid', $uuid)
+                ->where('tenants.uuid', $uuid)
                 ->select('categories.*')
                 ->get();
     }
