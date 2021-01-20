@@ -28,11 +28,16 @@ class ProductService
         $this->tenantRepository = $tenantRepository;
     }
 
-    public function getProductsByTenantUuid(string $uuid)
+    public function getProductsByTenantUuid(string $uuid, array $categories)
     {
         $tenant = $this->tenantRepository->getTenantByUuid($uuid);
 
-        return $this->productRepositoy->productsByTenantId($tenant->id);
+        return $this->productRepositoy->getProductsByTenantId($tenant->id, $categories);
+    }
+
+    public function getProductsByFlag(string $flag)
+    {
+        return $this->productRepositoy->getProductsByFlag($flag);
     }
 
 }
