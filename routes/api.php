@@ -7,6 +7,22 @@ use App\Http\Controllers\Api\{
     ProductApiController
 };
 
+use App\Http\Controllers\Api\Auth\{
+    RegisterController,
+    AuthClientController
+};
+
+Route::post('/sanctum/token', [AuthClientController::class, 'auth']);
+
+Route::group([
+    'middleware' => ['auth:sanctum']
+], function () {
+
+    Route::get('/auth/me', [AuthClientController::class, 'me']);
+    Route::post('/auth/logout', [AuthClientController::class, 'logout']);
+
+});
+
 Route::group([
     'prefix' => 'v1'
 ], function () {
@@ -23,4 +39,5 @@ Route::group([
     Route::get('/products/{flag}', [ProductApiController::class, 'show']);
     Route::get('/products', [ProductApiController::class, 'productsByTenant']);
 
+    Route::post('/clients', [RegisterController::class, 'store']);
 });
