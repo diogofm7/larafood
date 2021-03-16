@@ -8,6 +8,6 @@ interface ProductRepositoyInterface
 {
 
     public function getProductsByTenantId(int $idTenant, array $categories);
-    public function getProductsByFlag(string $flag);
+    public function getProductsByUuid(string $identify);
 
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ClienteResource;
+use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +33,7 @@ class AuthClientController extends Controller
     {
         $client = $request->user();
 
-        return new ClienteResource($client);
+        return new ClientResource($client);
     }
 
     public function logout(Request $request)

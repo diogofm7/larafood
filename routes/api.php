@@ -30,13 +30,13 @@ Route::group([
     Route::get('/tenants/{uuid}', [TenantApiController::class, 'show']);
     Route::get('/tenants', [TenantApiController::class, 'index']);
 
-    Route::get('/categories/{url}', [CategoryApiController::class, 'show']);
+    Route::get('/categories/{identify}', [CategoryApiController::class, 'show']);
     Route::get('/categories', [CategoryApiController::class, 'categoriesByTenant']);
 
     Route::get('/tables/{identify}', [TableApiController::class, 'show']);
     Route::get('/tables', [TableApiController::class, 'tablesByTenant']);
 
-    Route::get('/products/{flag}', [ProductApiController::class, 'show']);
+    Route::get('/products/{identify}', [ProductApiController::class, 'show']);
     Route::get('/products', [ProductApiController::class, 'productsByTenant']);
 
     Route::post('/clients', [RegisterController::class, 'store']);

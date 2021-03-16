@@ -27,15 +27,15 @@ class ProductRepository implements ProductRepositoyInterface
                 ->where('products.tenant_id', $idTenant)
                 ->where('categories.tenant_id', $idTenant)
                 ->when($categories, function ($q) use ($categories) {
-                    $q->whereIn('categories.url', $categories);
+                    $q->whereIn('categories.uuid', $categories);
                 })
-                ->get();
+                ->get('products.*');
     }
 
-    public function getProductsByFlag(string $flag)
+    public function getProductsByUuid(string $identify)
     {
         return DB::table($this->table)
-                ->where('flag', $flag)
+                ->where('uuid', $identify)
                 ->first();
     }
 }
